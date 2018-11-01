@@ -44,7 +44,12 @@ func (graph *Graph) AddEdge(node1 *Node, node2 *Node) {
 }
 
 func (graph *Graph) RemoveNode(data interface{}) {
-	// graph.nodes = append(graph.nodes, NewNode(data))
+	for index, cur := range graph.nodes {
+		if cur.data == data {
+			graph.nodes = append(graph.nodes[:index], graph.nodes[index:]...)
+			return
+		}
+	}
 }
 
 func (graph *Graph) RemoveEdge(node1 *Node, node2 *Node) {
